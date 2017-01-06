@@ -14,7 +14,7 @@
       <% flash.each do |message_type, message| %>
         <%= content_tag :div, message, class: "alert alert-#{message_type}" %>
       <% end %>
-      <%= javascript_include_tag "application", "chartkick" %>
+      <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
       <%= yield :charts_js %>
       <%= yield %>
     </div>
