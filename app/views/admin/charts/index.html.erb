@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="margin_top"><%= t ".today" %> : <%= Time.now.strftime(Settings.date_format) %></div>
+  <%= form_tag admin_charts_path, class: "form-horizontal bucket-form margin_top", method: "get" do %>
+    <p>
+      <%= text_field_tag :start_day, params[:start_day], placeholder: "start day", id: "datetimepicker", class: "datepicker" %>
+      <%= text_field_tag :end_day, params[:end_day], placeholder: "end day", class: "datepicker" %>
+      <%= submit_tag "Search", start_day: nil, end_day: nil, class: "btn-info btn"%>
+    </p>
+  <% end %>
+  <div class="margin_top"> <%= column_chart @order_array %> </div>
+  <div class=" col-md-8 col-md-offset-5"> <h6>Data Orders </h6> </div>
+  <div class="margin_top"> <%= column_chart @user_array %> </div>
+  <div class=" col-md-8 col-md-offset-5"> <h6>Data User </h6> </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+
+  });
+</script>

@@ -1,0 +1,35 @@
+<div class="modal fade" id="new_suggest">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4><span class="glyphicon glyphicon-lock"></span>
+          <%= t "order.info" %></h4>
+      </div>
+      <div class="modal-body order-info">
+        <%= form_for @suggest_product, html: {multipart: true} do |f| %>
+          <div class="field">
+            <%= t "suggest_product.name" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= t "suggest_product.description" %>
+            <%= f.text_area :description, class: "form-control" %>
+          </div>
+          <div class="field ">
+            <%= t "suggest_product.price" %>
+            <%= f.number_field :price, class: "form-control" %>
+          </div>
+          <div>
+            <%= t "suggest_product.category" %>
+            <%= f.select t("suggest_product.category_id"),
+              options_for_select(category_select),
+              class: "select form-control" %> 
+          <span class="picture">
+            <%= f.file_field :image %>
+          </span>
+          <%= f.submit "Post", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

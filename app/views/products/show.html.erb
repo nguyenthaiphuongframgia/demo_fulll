@@ -1,0 +1,98 @@
+<div class="single-product-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="single-sidebar">
+          <h2 class="sidebar-title"><%= t "same_category" %></h2>
+          <% @product.category.products.
+            take(Settings.default.same_category).each do |product| %>
+            <div class="single-product" >
+              <div class="product-f-image">
+                <%= image_tag product.image, alt: t("product.image") %>
+                <div class="product-hover">
+                  <% if product.quantity > Settings.default.min_product %>
+                    <%= link_to content_tag(:i, t("product.add_to_cart"), 
+                      class: "fa fa-shopping-cart"), 
+                      cart_items_path(product_id: product.id), 
+                      method: :post, class: "add-to-cart-link", remote: true,
+                      data: {confirm: t("confirm.add_to_cart")}
+                    %>
+                  <% end %>
+                  <%= link_to content_tag(:i, t("product.see_detail"), 
+                    class: "fa fa-link"), product,
+                    class: "view-details-link" %>
+                </div>
+              </div>
+              <h2><%= link_to product.name, product %></h2>
+              <div class="product-carousel-price">
+                <ins><%= t "price_format", price: product.price %></ins>
+              </div> 
+            </div>
+          <% end %>
+        </div>        
+      </div>
+      <div class="col-md-8">
+        <div class="product-content-right">
+          <div class="row">
+            <div class="col-sm-8">
+              <h2 class="product-name"><%= @product.name %></h2>	
+              <div class="product-inner-category">
+                <p><%= t "product.category" %>
+                  <%= link_to @product.category.name, "#" %>
+                </p>
+              </div>
+              <div class="product-inner-price">
+                <ins><%= t "product.price_lb" %>
+                  <%= t "price_format", price: @product.price %></ins>
+              </div>
+              <div class="product-inner-price" id="product-show-quantity">
+                <ins><%= t "product.quantity" %><%= @product.quantity %></ins>
+              </div>
+              <div class="product-images">
+                <%= image_tag @product.image, alt: t("product.image") %>
+              </div>
+              <div class="product-description">
+                <%= @product.description %>
+              </div>
+              <div class="fb-share-button" 
+                data-href="https://ecommerce-08.herokuapp.com/products/<%= @product.id %>" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fecommerce-08.herokuapp.com%2Fproducts%2F<%= @product.id %>&amp;src=sdkpreparse"></a></div>
+              <div class="fb-comments" 
+                data-href="<%= Settings.url_cmt %><%= @product.id %>"
+                data-width="<%= Settings.cmt_width %>" 
+                data-numposts="<%= Settings.fb_comment %>">
+              </div>
+            </div>
+            <div class="col-sm-4"> 
+              <div class="option-product"> 
+                <div class="in-cart" id="number-product-in-cart">
+                  <%= t "product.in_cart" %>
+                  <%= current_cart.number_each_product @product %>
+                </div>
+                <% if @product.quantity > Settings.default.min_product %>
+                  <%= link_to content_tag(:i, t("product.add_to_cart"), 
+                    class: "fa fa-shopping-cart"), 
+                    cart_items_path(product_id: @product.id), 
+                    method: :post, class: "btn btn-success", remote: true,
+                    data: {confirm: t("confirm.add_to_cart")}
+                  %>
+                <% end %>
+                <% if is_logged_in? %>
+                  <div id="rate_book">
+                    <%= render "rate", rating: @rating, product: @product %>
+                  </div>
+                <% end %>
+              </div>
+              <div><h2><%= t "review.lb" %></h2></div>
+              <div id="show_comments-<%= @product.id %>">
+                <%= render @product.comments %>
+              </div>
+              <% if is_logged_in? %>
+                <%= render "comments/new_comment_form" %>
+              <% end%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

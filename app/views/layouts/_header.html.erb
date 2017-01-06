@@ -1,0 +1,60 @@
+<div class="container height_header">
+  <div class="col-sm-6">
+    <div class="logo">
+      <%= link_to image_tag("logo.jpg", alt: t("alt.logo"),
+        class: "img-responsive "), root_path %>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="shopping-item">
+      <%= link_to image_tag("cart.png", alt: t("alt.cart"),
+        class: "img-responsive img-rounded "), current_cart %>
+      <span id="cart_price" class="cart-amunt">
+        <%= t "price_format", price: current_cart.total_price %>
+      </span>
+      <span id="cart_quantity" class="product-count">
+        <%= current_cart.total_quantity %>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="mainmenu-area">
+  <div class="container">
+    <div class="row">
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><%= link_to t("home"), root_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if is_logged_in? %>
+            <% if current_user.is_admin %>
+              <li><%= link_to t("order.lb"), admin_orders_path %></li>
+              <li><%= link_to t("suggest_product.lb"),
+                admin_suggest_products_path %>
+              </li>
+              <li><%= link_to t("product"), admin_products_path %></li>
+              <li><%= link_to t("category"), admin_categories_path %></li>
+              <li><%= link_to t("user"), admin_users_path %></li>
+              <li><%= link_to t("charts"), admin_charts_path %><li>
+            <% else %>
+              <li><%= link_to t("order.lb"), orders_path %></li>
+              <li><%= link_to t("suggest_product.lb"), suggest_products_path %></li>
+            <% end %>
+            <li><%= link_to t("profile"), current_user %></li>
+            <li><%= link_to t("signout"), signout_path, method: :delete,
+                class: "glyphicon glyphicon-user" %>
+            </li>
+          <% else %>
+            <li><%= link_to t("signin"), "#", class: "glyphicon glyphicon-user",
+              remote: true, data: {toggle: "modal", target: "#login_form"} %>
+            </li>
+          <% end %>
+          <li><%= render "shared/search_form" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% unless is_logged_in? %>
+  <%= render "shared/user_authenticate" %>
+<% end %>

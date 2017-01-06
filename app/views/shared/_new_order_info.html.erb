@@ -1,0 +1,28 @@
+<div class="modal fade" id="new_order_info">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4><span class="glyphicon glyphicon-lock"></span>
+          <%= t "order.info" %></h4>
+      </div>
+      <div class="modal-body order-info">
+        <%= form_for(@order, html: { multipart: true },
+           remote: true) do |f| %>
+        <div><%= t "order.name" %>
+          <%= f.text_field :receiver_name, value: current_user.name,
+            class: "form-control" %>
+        </div>
+        <div><%= t "order.address" %>
+          <%= f.text_field :receiver_address, value: current_user.address,
+            class: "form-control" %>
+        </div>              
+        <div><%= t "order.phone" %>
+          <%= f.text_field :receiver_phone, value: current_user.phone, 
+            class: "form-control" %> 
+        </div> 
+        <%=  f.submit t("order.submit"), class: "btn btn-primary btn-info refresh" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

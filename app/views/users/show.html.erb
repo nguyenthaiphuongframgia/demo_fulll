@@ -1,0 +1,12 @@
+<% provide :title, @user.name %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <div><%= image_tag @user.picture %></div>
+        <div><%= @user.name %></div>
+      </h1>
+    </section>
+  </aside>
+</div>
+<%= link_to t("edit"), edit_user_path(current_user), title: t("edit"), class: "btn glyphicon glyphicon-pencil btn-info" %>

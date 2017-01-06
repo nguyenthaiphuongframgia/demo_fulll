@@ -1,0 +1,16 @@
+<tr>
+  <td>
+    <%= category.id %>
+  </td>
+  <td class="col-sm-4  order-info" id="receiver-info">
+    <%= category.name %>
+  </td>
+  <td class="col-sm-2 text-center">
+    <%= link_to "", [:admin, category], class: "glyphicon glyphicon-trash btn-danger btn",
+      method: :delete, data: {confirm: t("you_sure"), title: "Delete" } %>
+  </td>
+  <td class="col-sm-2 text-center">
+    <%= link_to "", edit_admin_category_path(category),
+      class: "glyphicon glyphicon-pencil btn-info btn", title: t("edit") %>
+  </td>
+</tr>

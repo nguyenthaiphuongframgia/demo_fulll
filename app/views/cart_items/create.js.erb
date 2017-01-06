@@ -1,0 +1,3 @@
+$('#cart_quantity').html('<%= current_cart.total_quantity %>');
+$('#cart_price').html('<%= t "product.price", price: current_cart.total_price %>');
+$("#number-product-in-cart").html('<%= t "product.in_cart" %><%= current_cart.number_each_product @product %>');
