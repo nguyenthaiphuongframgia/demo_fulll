@@ -14,6 +14,6 @@ class SuggestProduct < ApplicationRecord
   end
 
   scope :by_status, ->status do
-    where "status LIKE '%#{status}%'" if status.present?
+    where "status LIKE '#{status}'" if status.present?
   end
 end
