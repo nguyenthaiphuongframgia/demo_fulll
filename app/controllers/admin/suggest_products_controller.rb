@@ -3,7 +3,7 @@ class Admin::SuggestProductsController < ApplicationController
 
   def index
     @suggest_products = SuggestProduct.
-      by_name(params[:search]).paginate per_page: Settings.per_page.suggest,
+      by_name(params[:search]).by_status(params[:status]).paginate per_page: Settings.per_page.suggest,
         page: params[:page]
   end
 
@@ -15,7 +15,15 @@ class Admin::SuggestProductsController < ApplicationController
     @suggest_products = SuggestProduct.find_by id: params[:id]
     @suggest_products.status = params[:status]
     if @suggest_products.save
-      redirect_to admin_suggest_products_path
+      case @suggest_products.status
+      when "Pending"
+        flash[:success] = "You had choosed Pending"
+      when "Approve"
+        flash[:success] = "You had choosed Approve"
+      else
+        flash[:success] = "You had choosed Reject"
+      end
+      redirect_to request.referer
     else
       render :edit
     end

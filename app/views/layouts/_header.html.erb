@@ -1,8 +1,7 @@
-<div class="container height_header">
-  <div class="col-sm-6">
+<div class="containers row">
+  <div class="col-sm-6 ">
     <div class="logo">
-      <%= link_to image_tag("logo.jpg", alt: t("alt.logo"),
-        class: "img-responsive "), root_path %>
+     <h2>Shopping</h2>
     </div>
   </div>
   <div class="col-sm-6">
@@ -32,7 +31,16 @@
               <li><%= link_to t("suggest_product.lb"),
                 admin_suggest_products_path %>
               </li>
-              <li><%= link_to t("product"), admin_products_path %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="menu1">
+                  Product<b class="carets"></b>
+                </a>
+                <ul class="dropdown-menu colors" role="menu" aria-labelledby="menu1">
+                  <li role="presentation "><%= link_to t("all_product"), admin_products_path%></li>
+                  <li class="divider"></li>
+                  <li role="presentation "><%= link_to t("new_product"), new_admin_product_path%></li>
+                </ul>
+              </li>
               <li><%= link_to t("category"), admin_categories_path %></li>
               <li><%= link_to t("user"), admin_users_path %></li>
               <li><%= link_to t("charts"), admin_charts_path %><li>

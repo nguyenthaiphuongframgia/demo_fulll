@@ -45,6 +45,6 @@ class User < ApplicationRecord
   end
 
   def send_order_email
-    UserMailer.orders_success(self).deliver_now
+    UserMailer.orders_success(self,).deliver_now
   end
 end

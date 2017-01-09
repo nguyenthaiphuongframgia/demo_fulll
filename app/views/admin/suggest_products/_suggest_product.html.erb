@@ -1,23 +1,30 @@
 <tr>
-  <td class="col-sm-4  order-info" id="receiver-info">
+  <td class="col-sm-2  order-info" id="receiver-info">
     <%= suggest_product.name %>
   </td>
   <td class="col-sm-2 text-center">
     <%= image_tag suggest_product.image.url %>
   </td>
-  <td class="col-sm-2 text-center item-total-price ">
+  <td class="col-sm-1 text-center item-total-price ">
     <%= suggest_product.description %>
   </td>
-  <td class="col-sm-2 text-center item-total-price ">
+  <td class="col-sm-1 text-center item-total-price ">
     <%= suggest_product.price %>
   </td>
-  <td><span class="label label-default"><%= suggest_product.status %></span></td>
+  <td>
+    <% if suggest_product.status.eql? "Pending" %>
+      <span class="btn-warning"> <%= t("pending")%> </span>
+    <% elsif suggest_product.status.eql? "Approved" %>
+      <span class="btn-info"> <%= t("approve")%> </span>
+    <% else %>
+      <span class="btn-danger"> <%= t("reject")%> </span>
+    <% end %>
   <td>
     <%= link_to t("pending"), admin_suggest_product_path(suggest_product, status: "Pending"),
-      method: :put, remote: true, class: "btn btn-warning" %>
+      method: :put, remote: true, class: "btn btn-warning margin_width" %>
     <%= link_to t("approve"), admin_suggest_product_path(suggest_product, status: "Approved"),
-      method: :put, remote: true, class: "btn btn-info" %>
+      method: :put, remote: true, class: "btn btn-info margin_width " %>
     <%= link_to t("reject"), admin_suggest_product_path(suggest_product, status: "Reject"),
-      method: :put, remote: true, class: "btn btn-danger" %>
+      method: :put, remote: true, class: "btn btn-danger margin_width " %>
   </td>
 </tr>

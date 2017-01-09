@@ -13,6 +13,7 @@ en:
   search: "Search"
   approve: "Approve"
   reject: "Reject"
+  singup_here: "Sign Up Here"
   import_file: "Import File"
   forgot_password: "Forgot password"
   welcome: "Welcome"
@@ -130,14 +131,13 @@ en:
       format_date: "%d/%m/%Y"
   destroy_cart_fail: "Fail to destroy cart"
   suggest_not_found: "Suggest not found"
-  all_suggest: "All suggest Product"
+  all_suggest: "All suggest Products"
   category: "Categories"
   product: "Products"
   user: "Users"
-  all_product: "All Product"
-  all_user: "All User"
-  you_sure: "You Sure"
-  all_suggest: "Suggest Product"
+  all_product: "All Products"
+  all_user: "All Users"
+  you_sure: "are you sure?"
   admin:
     products:
       create:
@@ -155,7 +155,6 @@ en:
   category_delete: "Category Deleted"
 
   product_imported: "Product Imported"
-  you_sure: "You Sure?"
   import_fails: "Import Fails"
   update_product: "Updated Product"
   update_category: "Updated Category"
@@ -177,3 +176,10 @@ en:
   price_format: "$%{price}"
   profile: "Profile"
   edit: "Edit"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"

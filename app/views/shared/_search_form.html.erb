@@ -1,8 +1,8 @@
-<div class="dropdown dropdown-lg"> 
-  <button type="button" class="btn btn-primary bt-search" 
+<div class="dropdown dropdown-lg">
+  <button type="button" class="btn btn-primary bt-search"
     data-toggle="dropdown" aria-expanded="false">
     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-  </button>                          
+  </button>
   <div class="dropdown-menu dropdown-menu-right" role="menu">
     <div><h2><%= t "search.lb" %></h2></div>
     <div class="search-form">
@@ -12,7 +12,7 @@
         </div>
         <div><%= t "search.category" %><%= select_tag "category",
           options_for_select(category_select),
-          class: "select form-control", include_blank: t("search.all") %> 
+          class: "select form-control", include_blank: t("search.all") %>
         </div>                  
         <div><%= t "search.rate" %>
           <%= number_field_tag :rate,params[:rate],
@@ -24,13 +24,13 @@
           placeholder: t("search.min"), class: "form-control" %>
         </div>
         <div><%= t "search.max" %>
-          <%= number_field_tag :max, params[:max], placeholder: t("search.max"), 
+          <%= number_field_tag :max, params[:max], placeholder: t("search.max"),
           class: "form-control" %>
         </div>
         <button type="submit" class="btn btn-primary">
           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 </div>

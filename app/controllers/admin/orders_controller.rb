@@ -2,8 +2,7 @@ class Admin::OrdersController < ApplicationController
   before_action :verify_admin
 
   def index
-    @orders = Order.order(created_at: :DESC).paginate per_page:
-      Settings.per_page.users, page: params[:page]
+    @orders = Order.by_name(params[:search]).by_status params[:status]
   end
 
   def edit
@@ -12,9 +11,20 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find_by id: params[:id]
-    @order.is_confirm = params[:is_confirm]
+    @order.status = params[:status]
+    @user = User.find @order.user_id
     if @order.save
-      redirect_to :back
+      case @order.status
+      when 0
+        flash[:success] = "You had choosed Pending"
+      when 1
+        flash[:success] = "You had choosed Approve"
+        UserMailer.orders_success(@user,"aprove").deliver_now
+      when 2
+        flash[:success] = "You had choosed Reject"
+        UserMailer.orders_success(@user,"Reject").deliver_now
+      end
+      redirect_to request.referer
     else
       render :edit
     end

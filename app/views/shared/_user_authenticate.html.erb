@@ -10,19 +10,14 @@
         <div class="text-center">
           <div role="tabpanel" class="login-tab">
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a id="signin-taba"
+              <li role="presentations" class="active"><a id="signin-taba"
                 href="#home"
                 aria-controls="home" role="tab" data-toggle="tab">
                 <%= t "signin" %></a>
               </li>
-              <li role="presentation"><a id="signup-taba" href="#signup"
-                aria-controls="signup" role="tab" data-toggle="tab">
-                <%= t "signup" %></a>
-              </li>
             </ul>
             <div class="tab-content">
               <%= render "users/sign_in" %>
-              <%= render "users/sign_up_form" %>
             </div>
           </div>
         </div>

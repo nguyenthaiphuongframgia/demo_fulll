@@ -8,6 +8,10 @@ module ApplicationHelper
     end
   end
 
+  def status_select
+    SuggestProduct.all.map{|request| [request.status, request.status]}
+  end
+
   def category_select
     Category.all.map{|category| [category.name, category.id]}
   end

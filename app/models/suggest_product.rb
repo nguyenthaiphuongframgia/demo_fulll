@@ -12,4 +12,8 @@ class SuggestProduct < ApplicationRecord
   scope :by_name, ->name do
     where "name LIKE '%#{name}%'" if name.present?
   end
+
+  scope :by_status, ->status do
+    where "status LIKE '%#{status}%'" if status.present?
+  end
 end

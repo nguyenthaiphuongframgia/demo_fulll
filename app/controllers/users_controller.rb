@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     else
       flash[:danger] = t "register_error"
     end
-    redirect_to request.referer
+    redirect_to root_path
   end
 
   def update

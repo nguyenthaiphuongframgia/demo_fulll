@@ -1,20 +1,42 @@
 <% provide :title, t("all_suggest") %>
-<h1><%= t("all_suggest") %></h1>
-<%= form_tag admin_suggest_products_path, method: "get" do %>
-  <p>
-    <%= text_field_tag :search, params[:search], placeholder: "search" %>
-    <%= submit_tag "Search", name: nil, class: "btn-info btn"%>
-  </p>
-<% end %>
-<table class="table table-hover">
+<div class="row">
+  <div class="col-md-6">
+    <h2><%= t("all_suggest") %></h2>
+    <%= form_tag admin_suggest_products_path, method: "get" do %>
+      <div class="input-group" id="adv-search">
+        <%= text_field_tag :search, params[:search], placeholder: "search products",
+          class: "form-control  a" %>
+        <div class="input-group-btn">
+          <div class="btn-group" role="group">
+            <div class="dropdown dropdown-lg">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"   
+                aria-expanded="false"><span class="caret"></span></button>
+              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="filter">Status</label>
+                    <%= select_tag :status, options_for_select(["Pending", "Approve", "Reject"], params[:status]), class: "form-control" %>
+                   </div>
+                </form>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<table class="table table-hover margin_top">
   <thead>
     <tr class="info">
       <th class="text-center"><%= t("product_name") %></th>
       <th class="text-center"><%= t("image") %></th>
       <th class="text-center"><%= t("description") %></th>
       <th class="text-center"><%= t("price") %></th>
-      <th class="text-center"></th>
       <th class="text-center"><%= t("status") %></th>
+      <th class="text-center"><%= t("options")%></th>
     </tr>
   </thead>
   <tbody>

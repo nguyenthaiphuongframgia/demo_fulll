@@ -2,20 +2,32 @@
   <div class="margin_top"><%= t ".today" %> : <%= Time.now.strftime(Settings.date_format) %></div>
   <%= form_tag admin_charts_path, class: "form-horizontal bucket-form margin_top", method: "get" do %>
     <p>
-      <%= text_field_tag :start_day, params[:start_day], placeholder: "start day", id: "datetimepicker", class: "datepicker" %>
-      <%= text_field_tag :end_day, params[:end_day], placeholder: "end day", class: "datepicker" %>
+      <%= text_field_tag :start_day, params[:start_day], class: "date", placeholder: "start day", id: "from"  %>
+      <%= text_field_tag :end_day, params[:end_day], placeholder: "end day", id: "to" %>
       <%= submit_tag "Search", start_day: nil, end_day: nil, class: "btn-info btn"%>
     </p>
   <% end %>
-  <div class="margin_top"> <%= column_chart @order_array %> </div>
   <div class=" col-md-8 col-md-offset-5"> <h6>Data Orders </h6> </div>
-  <div class="margin_top"> <%= column_chart @user_array %> </div>
+  <div class="margin_top"> <%= column_chart @order_array %> </div>
   <div class=" col-md-8 col-md-offset-5"> <h6>Data User </h6> </div>
+  <div class="margin_top"> <%= column_chart @user_array %> </div>
 </div>
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.datepicker').datepicker();
-
+     $("#to").datepicker({ dateFormat: 'yyyy-mmm-dd' });
+     $("#from").datepicker({ dateFormat: 'yyyy-mmm-dd' }).bind("change",function(){
+            var minValue = $(this).val();
+            minValue = $.datepicker.parseDate("yyyy-mmm-dd", minValue);
+            minValue.setDate(minValue.getDate()+1);
+            $("#to").datepicker( "option", "minDate", minValue );
+        })
   });
+
+
+  // $(function() {
+  //   $('#datetimepicker').datetimepicker({
+  //     pickTime: false
+  //   });
+  // });
 </script>

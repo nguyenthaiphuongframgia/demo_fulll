@@ -26,6 +26,7 @@ gem 'hightop'
 gem 'groupdate'
 gem 'mysql2'
 gem 'bootstrap-datepicker-rails'
+gem 'rubocop', require: false
 
 group :production do
   gem 'pg'

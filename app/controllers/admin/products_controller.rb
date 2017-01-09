@@ -1,7 +1,7 @@
 class Admin::ProductsController < ApplicationController
   before_action :verify_admin
   before_action :load_all_leaf_categories
-  
+
   def new
     @product = Product.new
   end
@@ -10,7 +10,7 @@ class Admin::ProductsController < ApplicationController
     @products = Product.order(created_at: :DESC).paginate per_page:
       Settings.per_page.users, page: params[:page]
   end
-  
+
   def show
     @product = Product.find_by id: params[:id]
     unless @product
@@ -31,9 +31,8 @@ class Admin::ProductsController < ApplicationController
 
   def edit
     @product = Product.find_by id: params[:id]
-
   end
-  
+
   def update
     @product = Product.find_by id: params[:id]
     if @product.update_attributes(product_params)

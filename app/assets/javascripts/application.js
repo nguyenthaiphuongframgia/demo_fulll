@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jsapi
+
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
@@ -22,6 +22,7 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
 //= require_tree .
+
 <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
 $(document).ready(function(){
@@ -29,6 +30,12 @@ $(document).ready(function(){
     e.preventDefault();
     $('#signup-taba').tab('show');
   });
+
+  $(.tab-content).load(function(e){
+    $('#signin-taba').tab('show');
+    e.preventDefault();
+    $('#signup-taba').tab('');
+   });
 
   $(document).on('click','.signin-tab',function(e){
     e.preventDefault();

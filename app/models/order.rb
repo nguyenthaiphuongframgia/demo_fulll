@@ -23,4 +23,12 @@ class Order < ApplicationRecord
   def total_quantity
     order_items.to_a.sum {|item| item.quantity}
   end
+
+  scope :by_name, ->name do
+    where "receiver_name LIKE '%#{name}%'" if name.present?
+  end
+
+  scope :by_status, ->status do
+    where "status LIKE '%#{status}%'" if status.present?
+  end
 end
